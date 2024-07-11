@@ -6,7 +6,7 @@
 /*   By: xiaxu <xiaxu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 20:03:25 by xiaxu             #+#    #+#             */
-/*   Updated: 2024/07/11 11:07:02 by xiaxu            ###   ########.fr       */
+/*   Updated: 2024/07/11 18:45:37 by xiaxu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,18 @@
 static void	init_my_vars(t_vars *vars)
 {
 	vars->mlx = mlx_init();
+	if (!vars->mlx)
+	{
+		free_map_tab(vars->tab, vars->height, vars->width);
+		exit_handler("Error connecting to graphics server.");
+	}
 	vars->win = mlx_new_window(vars->mlx, WIDTH, HEIGHT, "FdF");
 	vars->img = mlx_new_image(vars->mlx, WIDTH, HEIGHT);
+	if (!vars->win || !vars->img)
+	{
+		free_map_tab(vars->tab, vars->height, vars->width);
+		exit_handler("Error initialising mlx.");
+	}
 	vars->addr = mlx_get_data_addr(vars->img, &vars->bpp, &vars->line_len,
 			&vars->endian);
 	vars->iso = 1;
