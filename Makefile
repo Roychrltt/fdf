@@ -25,7 +25,7 @@ $(NAME): $(OBJS)
 	@$(MAKE) -sC minilib 2> /dev/null
 	@echo "$(GREEN)Program$(RESET) $(CYAN)$(BOLD)$(NAME)$(RESET) $(GREEN)creating...$(RESET)"
 	@$(CC) $(CFLAGS) $(INC) $(OBJS) $(LIB_FLAGS) $(MINILIB) -o $(NAME)
-	@echo "$(GREEN)Program$(RESET) $(CYAN)$(BOLD)$(NAME)$(RESET) $(GREEN)created!$(RESET)"
+	@echo "$(GREEN)Program$(RESET) $(CYAN)$(BOLD)$(BLINK)$(NAME)$(RESET) $(GREEN)created!$(RESET)"
 
 %.o: %.c
 	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
@@ -55,4 +55,5 @@ BLUE = \033[34m
 MAGENTA = \033[35m
 CYAN = \033[36m
 BOLD = \033[1m
+BLINK = \033[5m
 RESET = \033[0m

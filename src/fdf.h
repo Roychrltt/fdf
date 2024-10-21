@@ -6,7 +6,7 @@
 /*   By: xiaxu <xiaxu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 18:03:12 by xiaxu             #+#    #+#             */
-/*   Updated: 2024/07/11 11:07:13 by xiaxu            ###   ########.fr       */
+/*   Updated: 2024/10/21 15:44:13 by xiaxu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <math.h>
 
 # define WIDTH 1200
-# define HEIGHT 700
+# define HEIGHT 800
 # define SHIFT 10
 
 # define KEY_ESC 65307
@@ -29,6 +29,8 @@
 # define KEY_A 97
 # define KEY_S 115
 # define KEY_D 100
+# define KEY_N 110
+# define KEY_M 109
 # define KEY_PLUS 61
 # define KEY_MINUS 45
 # define KEY_LEFT 65361
@@ -37,6 +39,7 @@
 # define KEY_DOWN 65364
 # define KEY_R 114
 # define KEY_P 112
+# define PI 3.14159265358979323846
 
 typedef struct s_point
 {
@@ -53,6 +56,7 @@ typedef struct s_vars
 	int		iso;
 	float	flatten;
 	float	angle;
+	float	swirl;
 	int		scale;
 	void	*img;
 	char	*addr;

@@ -6,7 +6,7 @@
 /*   By: xiaxu <xiaxu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 18:25:52 by xiaxu             #+#    #+#             */
-/*   Updated: 2024/07/11 18:41:35 by xiaxu            ###   ########.fr       */
+/*   Updated: 2024/10/21 16:08:43 by xiaxu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	close_window(t_vars *vars)
 	exit(EXIT_SUCCESS);
 	return (0);
 }
-
+/*
 static void	reset_image(t_vars *vars)
 {
 	vars->iso = 1;
@@ -39,7 +39,7 @@ static void	reset_image(t_vars *vars)
 	vars->shift_x = WIDTH / 2;
 	vars->shift_y = HEIGHT / 4;
 }
-
+*/
 static void	handle_move(int keycode, t_vars *vars)
 {
 	if (keycode == KEY_W)
@@ -50,22 +50,26 @@ static void	handle_move(int keycode, t_vars *vars)
 		vars->shift_x += SHIFT;
 	if (keycode == KEY_D)
 		vars->shift_x -= SHIFT;
+	if (keycode == KEY_LEFT)
+		vars->swirl += 0.1;
+	if (keycode == KEY_RIGHT)
+		vars->swirl -= 0.1;
 	if (keycode == KEY_PLUS)
 		vars->scale *= 2;
 	if (keycode == KEY_MINUS)
 		vars->scale /= 1.3;
-	if (keycode == KEY_LEFT)
+	if (keycode == KEY_R)
 		vars->angle -= 0.1;
-	if (keycode == KEY_RIGHT)
+	if (keycode == KEY_P)
 		vars->angle += 0.1;
 	if (keycode == KEY_UP)
 		vars->flatten *= 1.5;
 	if (keycode == KEY_DOWN)
 		vars->flatten /= 1.5;
-	if (keycode == KEY_R)
+	/*if (keycode == KEY_R)
 		reset_image(vars);
 	if (keycode == KEY_P)
-		vars->iso = 0;
+		vars->iso = 0;*/
 	update_image(vars);
 }
 
