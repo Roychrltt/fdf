@@ -6,7 +6,7 @@
 /*   By: xiaxu <xiaxu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:28:48 by xiaxu             #+#    #+#             */
-/*   Updated: 2024/10/21 16:02:36 by xiaxu            ###   ########.fr       */
+/*   Updated: 2024/10/25 18:54:45 by xiaxu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,37 +48,26 @@ int	count_word(char const *s, char c)
 	return (count);
 }
 
-void	isometric(t_vars vars, int *x, int *y, int z)
+void	isometric(t_vars *vars, int *x, int *y, int z)
 {
 	int	prev_x;
 	int	prev_y;
 
 	prev_x = *x;
 	prev_y = *y;
-	if (!vars.iso)
-	{
-		*x = prev_x * vars.scale + vars.shift_x;
-		*y = prev_y * vars.scale + vars.shift_y;
-		return ;
-	}
-	*x = ((prev_x - prev_y) * cos(vars.angle)) * vars.scale + vars.shift_x;
-	*y = (-z * vars.flatten + (prev_x + prev_y) * sin(vars.angle))
-		* vars.scale + vars.shift_y;
+	*x = ((prev_x - prev_y) * cos(vars->angle)) * vars->scale;
+	*y = (-z * vars->flatten + (prev_x + prev_y) * sin(vars->angle)) * vars->scale;
+
+	prev_x = *x - vars->player_x;
+	prev_y = *y - vars->player_y;
+	*x = prev_x * cos(vars->swirl) - prev_y * sin(vars->swirl);
+	*y = prev_x * sin(vars->swirl) + prev_y * cos(vars->swirl);
+
+	*x += vars->shift_x;
+	*y += vars->shift_y;
 }
 
-static void swirl(t_vars vars, int *x, int *y)
-{
-	int		prev_x;
-	int		prev_y;
-
-	prev_x = *x - WIDTH / 2;
-	prev_y = *y - HEIGHT / 2;
-//	a = atan2(prev_y, prev_x) * (180.0 / PI);
-	*x = prev_x * cos(vars.swirl) - prev_y * sin(vars.swirl) + WIDTH / 2;
-	*y = prev_x * sin(vars.swirl) + prev_y * cos(vars.swirl) + HEIGHT / 2;
-}
-
-void	map_to_points(t_vars vars, t_point *points)
+void	map_to_points(t_vars *vars, t_point *points)
 {
 	int		i;
 	int		j;
@@ -86,18 +75,17 @@ void	map_to_points(t_vars vars, t_point *points)
 
 	i = 0;
 	index = 0;
-	while (i < vars.height)
+	while (i < vars->height)
 	{
 		j = 0;
-		while (j < vars.width)
+		while (j < vars->width)
 		{
 			points[index].x = j;
 			points[index].y = i;
-			points[index].z = vars.tab[i][j][0];
-			points[index].color = vars.tab[i][j][1];
+			points[index].z = vars->tab[i][j][0];
+			points[index].color = vars->tab[i][j][1];
 			isometric(vars, &points[index].x, &points[index].y,
 				points[index].z);
-			swirl(vars, &points[index].x, &points[index].y);
 			j++;
 			index++;
 		}

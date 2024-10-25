@@ -6,7 +6,7 @@
 /*   By: xiaxu <xiaxu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 19:09:10 by xiaxu             #+#    #+#             */
-/*   Updated: 2024/07/11 11:01:00 by xiaxu            ###   ########.fr       */
+/*   Updated: 2024/10/25 18:46:51 by xiaxu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	draw_instructions(t_vars *vars)
 	mlx_string_put(mlx, win, 15, y += 20, 0x3A3A3A, "Toggle Perspective: P");
 	mlx_string_put(mlx, win, 15, y += 20, 0x3A3A3A, "(Isometric and Parallel)");
 	mlx_string_put(mlx, win, 15, y += 30, 0x3A3A3A, "Reset: R");
+	mlx_string_put(mlx, win, WIDTH / 2, HEIGHT / 2, 0xFF0000, "O");
 }
 
 static void	put_pixel(t_vars *vars, t_point point)
@@ -109,7 +110,7 @@ void	draw_image(t_vars *vars)
 		free_map_tab(vars->tab, vars->height, vars->width);
 		exit_handler("Malloc failure.\n");
 	}
-	map_to_points(*vars, points);
+	map_to_points(vars, points);
 	draw_background(vars);
 	i = 0;
 	while (i < vars->width * vars->height)

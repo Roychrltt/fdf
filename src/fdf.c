@@ -6,7 +6,7 @@
 /*   By: xiaxu <xiaxu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 20:03:25 by xiaxu             #+#    #+#             */
-/*   Updated: 2024/10/21 15:57:04 by xiaxu            ###   ########.fr       */
+/*   Updated: 2024/10/25 17:07:52 by xiaxu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ static void	init_my_vars(t_vars *vars)
 	vars->swirl = 0.0;
 	vars->scale = 10;
 	vars->shift_x = WIDTH / 2;
-	vars->shift_y = HEIGHT / 3;
+	vars->shift_y = HEIGHT / 2;
+	vars->player_x = 0;
+	vars->player_y = 0;
 }
 
 static void	check_is_fdf(char *path)

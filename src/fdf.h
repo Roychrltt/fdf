@@ -6,7 +6,7 @@
 /*   By: xiaxu <xiaxu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 18:03:12 by xiaxu             #+#    #+#             */
-/*   Updated: 2024/10/21 15:44:13 by xiaxu            ###   ########.fr       */
+/*   Updated: 2024/10/25 18:48:31 by xiaxu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 # define WIDTH 1200
 # define HEIGHT 800
-# define SHIFT 10
+# define SHIFT 1
 
 # define KEY_ESC 65307
 # define KEY_W 119
@@ -66,6 +66,8 @@ typedef struct s_vars
 	char	*path;
 	int		fd;
 	int		height;
+	int		player_x;
+	int		player_y;
 	int		width;
 	int		***tab;
 	int		shift_x;
@@ -97,7 +99,7 @@ void	handle_split_failure(char *s, t_vars *vars, int i);
 void	exit_handler(char *s);
 int		open_map(char *map);
 int		count_word(char const *s, char c);
-void	isometric(t_vars vars, int *x, int *y, int z);
-void	map_to_points(t_vars vars, t_point *points);
+void	isometric(t_vars *vars, int *x, int *y, int z);
+void	map_to_points(t_vars *vars, t_point *points);
 
 #endif
