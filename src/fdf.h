@@ -6,7 +6,7 @@
 /*   By: xiaxu <xiaxu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 18:03:12 by xiaxu             #+#    #+#             */
-/*   Updated: 2024/10/25 18:48:31 by xiaxu            ###   ########.fr       */
+/*   Updated: 2024/10/26 14:38:52 by xiaxu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <math.h>
 
 # define WIDTH 1200
-# define HEIGHT 800
+# define HEIGHT 1000
 # define SHIFT 1
 
 # define KEY_ESC 65307
@@ -72,6 +72,8 @@ typedef struct s_vars
 	int		***tab;
 	int		shift_x;
 	int		shift_y;
+	int		initial_x;
+	int		initial_y;
 }	t_vars;
 
 // parse

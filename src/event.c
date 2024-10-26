@@ -6,7 +6,7 @@
 /*   By: xiaxu <xiaxu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 18:25:52 by xiaxu             #+#    #+#             */
-/*   Updated: 2024/10/25 18:49:21 by xiaxu            ###   ########.fr       */
+/*   Updated: 2024/10/26 14:54:35 by xiaxu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	close_window(t_vars *vars)
 	exit(EXIT_SUCCESS);
 	return (0); 
 }
-/*
+
 static void	reset_image(t_vars *vars)
 {
 	vars->iso = 1;
@@ -37,39 +37,41 @@ static void	reset_image(t_vars *vars)
 	vars->angle = 0.523599;
 	vars->scale = 10;
 	vars->shift_x = WIDTH / 2;
-	vars->shift_y = HEIGHT / 4;
+	vars->shift_y = HEIGHT / 2;
 }
-*/
+
 static void	handle_move(int keycode, t_vars *vars)
 {
 	if (keycode == KEY_W)
-		vars->player_y -= SHIFT;
-	if (keycode == KEY_S)
-		vars->player_y += SHIFT;
-	if (keycode == KEY_A)
-		vars->player_x -= SHIFT;
-	if (keycode == KEY_D)
-		vars->player_x += SHIFT;
-	if (keycode == KEY_LEFT)
-		vars->swirl += 0.1;
-	if (keycode == KEY_RIGHT)
-		vars->swirl -= 0.1;
-	if (keycode == KEY_PLUS)
-		vars->player_y += 1;
-	if (keycode == KEY_MINUS)
 		vars->player_y -= 1;
-	if (keycode == KEY_R)
+	if (keycode == KEY_S)
+		vars->player_y += 1;
+	if (keycode == KEY_A)
 		vars->player_x -= 1;
+	if (keycode == KEY_D)
+		vars->player_x += 1;
+
+	if (keycode == KEY_LEFT)
+		vars->shift_x -= 1;
+	if (keycode == KEY_RIGHT)
+		vars->shift_x += 1;
+	if (keycode == KEY_UP)
+		vars->shift_y -= 1;
+	if (keycode == KEY_DOWN)
+		vars->shift_y += 1;
+
+	if (keycode == KEY_PLUS)
+		vars->swirl -= 0.1;
+	if (keycode == KEY_MINUS)
+		vars->swirl += 0.1;
 	if (keycode == KEY_P)
 		vars->player_x += 1;
-	if (keycode == KEY_UP)
-		vars->flatten *= 1.5;
-	if (keycode == KEY_DOWN)
-		vars->flatten /= 1.5;
-	/*if (keycode == KEY_R)
+	if (keycode == KEY_R)
 		reset_image(vars);
-	if (keycode == KEY_P)
+	/*if (keycode == KEY_P)
 		vars->iso = 0;*/
+	vars->player_x += vars->shift_x;
+	vars->player_y += vars->shift_y;
 	update_image(vars);
 }
 
