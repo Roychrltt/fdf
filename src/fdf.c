@@ -6,7 +6,7 @@
 /*   By: xiaxu <xiaxu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 20:03:25 by xiaxu             #+#    #+#             */
-/*   Updated: 2024/10/27 14:40:35 by xiaxu            ###   ########.fr       */
+/*   Updated: 2024/10/27 16:34:27 by xiaxu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static void	init_my_vars(t_vars *vars)
 	vars->addr = mlx_get_data_addr(vars->img, &vars->bpp, &vars->line_len,
 			&vars->endian);
 	vars->iso = 1;
+	vars->keycode = -1;
 	vars->flatten = 1;
 	vars->angle = 0.523599;
 	vars->swirl = 0.0;

@@ -6,7 +6,7 @@
 /*   By: xiaxu <xiaxu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 18:03:12 by xiaxu             #+#    #+#             */
-/*   Updated: 2024/10/26 14:38:52 by xiaxu            ###   ########.fr       */
+/*   Updated: 2024/10/27 16:34:04 by xiaxu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_vars
 	void	*mlx;
 	void	*win;
 	int		iso;
+	int		keycode;
 	float	flatten;
 	float	angle;
 	float	swirl;
