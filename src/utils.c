@@ -6,7 +6,7 @@
 /*   By: xiaxu <xiaxu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:28:48 by xiaxu             #+#    #+#             */
-/*   Updated: 2024/10/27 17:42:44 by xiaxu            ###   ########.fr       */
+/*   Updated: 2024/10/27 17:54:01 by xiaxu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,12 @@ void	isometric(t_vars *vars, int *x, int *y, int z)
 	static float s = 0;
 	static float shift_x = 0;
 	static float shift_y = 0;
+	static float s_x = 0;
+	static float s_y = 0;
 	s += vars->swirl;
+	s_x += vars->shift_x;
+	s_y += vars->shift_y;
+
 	shift_x += vars->shift_x * cos(s);
 	shift_y += vars->shift_y * cos(s);
 //	prev_x = *x;
@@ -74,8 +79,8 @@ void	isometric(t_vars *vars, int *x, int *y, int z)
 	//	*y += +vars->player_y + vars->shift_y + HEIGHT / 2;
 //	*x += vars->shift_x + WIDTH / 2;
 //	*y += vars->shift_y + HEIGHT / 2;
-	*x += vars->shift_x + WIDTH / 2;
-	*y += vars->shift_y + HEIGHT / 2;
+	*x += s_x + WIDTH / 2;
+	*y += s_y + HEIGHT / 2;
 }
 
 void	map_to_points(t_vars *vars, t_point *points)
