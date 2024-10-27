@@ -6,7 +6,7 @@
 /*   By: xiaxu <xiaxu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:28:48 by xiaxu             #+#    #+#             */
-/*   Updated: 2024/10/27 16:48:49 by xiaxu            ###   ########.fr       */
+/*   Updated: 2024/10/27 17:42:44 by xiaxu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,11 @@ void	isometric(t_vars *vars, int *x, int *y, int z)
 	int	prev_y;
 	(void)z;
 	static float s = 0;
+	static float shift_x = 0;
+	static float shift_y = 0;
 	s += vars->swirl;
+	shift_x += vars->shift_x * cos(s);
+	shift_y += vars->shift_y * cos(s);
 //	prev_x = *x;
 //	prev_y = *y;
 //	*x = ((prev_x - prev_y) * cos(vars->angle)) * vars->scale;
@@ -62,8 +66,8 @@ void	isometric(t_vars *vars, int *x, int *y, int z)
 	*x *= vars->scale;
 	*y *= vars->scale;
 
-	prev_x = *x;
-	prev_y = *y;
+	prev_x = *x - shift_x;
+	prev_y = *y - shift_y;
 	*x = prev_x * cos(s) - prev_y * sin(s);
 	*y = prev_x * sin(s) + prev_y * cos(s);
 	//	*x += +vars->player_x + vars->shift_x + WIDTH / 2;
@@ -97,6 +101,10 @@ void	map_to_points(t_vars *vars, t_point *points)
 			index++;
 		if (vars->swirl)
 			vars->swirl = 0;
+		if (vars->shift_x)
+			vars->shift_x = 0;
+		if (vars->shift_y)
+			vars->shift_y = 0;
 		}
 		i++;
 	}

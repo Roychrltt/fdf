@@ -6,7 +6,7 @@
 /*   By: xiaxu <xiaxu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 18:25:52 by xiaxu             #+#    #+#             */
-/*   Updated: 2024/10/27 16:35:54 by xiaxu            ###   ########.fr       */
+/*   Updated: 2024/10/27 17:42:09 by xiaxu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,18 +56,18 @@ static void	handle_move(int keycode, t_vars *vars)
 		vars->player_x += 1;
 
 	if (keycode == KEY_LEFT)
-		vars->shift_x -= -1;
+		vars->shift_x = -1;
 	if (keycode == KEY_RIGHT)
-		vars->shift_x += -1;
+		vars->shift_x = -1;
 	if (keycode == KEY_UP)
-		vars->shift_y -= -1;
+		vars->shift_y = -1;
 	if (keycode == KEY_DOWN)
-		vars->shift_y += -1;
+		vars->shift_y = -1;
 
 	if (keycode == KEY_PLUS)
-		vars->swirl = 0.1;
-	if (keycode == KEY_MINUS)
 		vars->swirl = -0.1;
+	if (keycode == KEY_MINUS)
+		vars->swirl = 0.1;
 	if (keycode == KEY_P)
 		vars->player_x += 1;
 	if (keycode == KEY_R)
