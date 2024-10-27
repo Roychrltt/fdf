@@ -6,7 +6,7 @@
 /*   By: xiaxu <xiaxu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 18:25:52 by xiaxu             #+#    #+#             */
-/*   Updated: 2024/10/26 14:54:35 by xiaxu            ###   ########.fr       */
+/*   Updated: 2024/10/27 14:39:17 by xiaxu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,11 @@ static void	reset_image(t_vars *vars)
 	vars->flatten = 1;
 	vars->angle = 0.523599;
 	vars->scale = 10;
+	vars->swirl = 0;
 	vars->shift_x = WIDTH / 2;
 	vars->shift_y = HEIGHT / 2;
+	vars->player_x = 0;
+	vars->player_y = 0;
 }
 
 static void	handle_move(int keycode, t_vars *vars)
@@ -52,13 +55,13 @@ static void	handle_move(int keycode, t_vars *vars)
 		vars->player_x += 1;
 
 	if (keycode == KEY_LEFT)
-		vars->shift_x -= 1;
+		vars->shift_x -= -1;
 	if (keycode == KEY_RIGHT)
-		vars->shift_x += 1;
+		vars->shift_x += -1;
 	if (keycode == KEY_UP)
-		vars->shift_y -= 1;
+		vars->shift_y -= -1;
 	if (keycode == KEY_DOWN)
-		vars->shift_y += 1;
+		vars->shift_y += -1;
 
 	if (keycode == KEY_PLUS)
 		vars->swirl -= 0.1;
@@ -70,8 +73,8 @@ static void	handle_move(int keycode, t_vars *vars)
 		reset_image(vars);
 	/*if (keycode == KEY_P)
 		vars->iso = 0;*/
-	vars->player_x += vars->shift_x;
-	vars->player_y += vars->shift_y;
+//	vars->player_x += vars->shift_x;
+//	vars->player_y += vars->shift_y;
 	update_image(vars);
 }
 
