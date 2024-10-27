@@ -6,7 +6,7 @@
 /*   By: xiaxu <xiaxu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:28:48 by xiaxu             #+#    #+#             */
-/*   Updated: 2024/10/27 14:41:53 by xiaxu            ###   ########.fr       */
+/*   Updated: 2024/10/27 14:50:12 by xiaxu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,15 @@ void	isometric(t_vars *vars, int *x, int *y, int z)
 	*x = ((prev_x - prev_y) * cos(vars->angle)) * vars->scale;
 	*y = (-z * vars->flatten + (prev_x + prev_y) * sin(vars->angle)) * vars->scale;
 
-	prev_x = *x - vars->player_x - vars->shift_x;
-	prev_y = *y - vars->player_y - vars->shift_y;
+	prev_x = *x - vars->player_x;
+	prev_y = *y - vars->player_y;
 	*x = prev_x * cos(vars->swirl) - prev_y * sin(vars->swirl);
 	*y = prev_x * sin(vars->swirl) + prev_y * cos(vars->swirl);
 
-	*x += +vars->player_x + vars->shift_x + WIDTH / 2;
-	*y += +vars->player_y + vars->shift_y + HEIGHT / 2;
+//	*x += +vars->player_x + vars->shift_x + WIDTH / 2;
+//	*y += +vars->player_y + vars->shift_y + HEIGHT / 2;
+	*x += vars->shift_x + WIDTH / 2;
+	*y += vars->shift_y + HEIGHT / 2;
 }
 
 void	map_to_points(t_vars *vars, t_point *points)
